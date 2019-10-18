@@ -5,15 +5,20 @@ import Bullet from "./classes/Bullet.class";
 import { makeGrid } from "./helpers/grid.helpers";
 import { placeTurret } from "./helpers/turret.helpers";
 import { damageEnemy } from "./helpers/enemy.helpers";
-import kontraSprite from './assets/kontra.png'
-import bulletImage from './assets/bullet.png'
-import turretImage from './assets/cute-turret.png'
+import kontraSprite from "./assets/kontra.png";
+import bulletImage from "./assets/bullet.png";
+import turretImage from "./assets/cute-turret.png";
+import gameOverPng from "./assets/gameover.png";
+import tiroImage from "./assets/tiro.png";
+import fontImage from "./assets/font.png";
+import fontFnt from "./assets/font.fnt";
 
 const DEFAULT_WIDTH = 768;
 const DEFAULT_HEIGHT = 768;
 const config = {
   type: Phaser.AUTO,
   parent: "phaser-example",
+  scaleMode: Phaser.Scale.FIT,
   autoCenter: Phaser.Scale.CENTER_BOTH,
   width: DEFAULT_WIDTH,
   height: DEFAULT_HEIGHT,
@@ -45,6 +50,7 @@ let playerHealth = 100;
 let enemySpan = 3000;
 let pusils = 4;
 let playerHealthText;
+let gameOverImage;
 let pusilText;
 let nextEnemy;
 let enemies;
@@ -66,6 +72,9 @@ function increasePusils() {
  * PRELOAD METHOD
  */
 function preload() {
+  this.load.bitmapFont("Press Start 2P", fontImage, fontFnt);
+  this.load.image("tiro-logo", tiroImage);
+  this.load.image("gameover", gameOverPng);
   this.load.image("bullet", bulletImage);
   this.load.image("turret", turretImage);
   this.load.spritesheet("kontra", kontraSprite, {
@@ -185,12 +194,15 @@ function create() {
     damageEnemy(enemy, bullet);
   });
 
-  this.add.text(16, 16, "tiro-tiro", { fontFamily: '"Press Start 2P"' });
-  playerHealthText = this.add.text(572, 710, `health: ${playerHealth}`, {
-    fontFamily: '"Press Start 2P"'
+  // this.add.text(16, 16, "TIRO-TIRO", {
+  //   fontSize: 32
+  // });
+  this.add.image(16, 16, "tiro-logo", { height: 200, width: 200 });
+  playerHealthText = this.add.text(592, 698, `health: ${playerHealth}`, {
+    fontSize: 24
   });
-  pusilText = this.add.text(572, 730, `pusil: ${pusils}`, {
-    fontFamily: '"Press Start 2P"'
+  pusilText = this.add.text(592, 726, `pusil: ${pusils}`, {
+    fontSize: 24
   });
 }
 
@@ -223,11 +235,8 @@ function update(time, delta) {
   if (playerHealth <= 0) {
     playerHealth = 0;
 
-    const gameOverText = this.add.text(220, 302, "GAME\nOVER", {
-      fontFamily: '"Press Start 2P"',
-      fontSize: 82
-    });
-    gameOverText.setDepth(4);
+    gameOverImage = this.add.image(384, 384, "gameover");
+    gameOverImage.setDepth(4);
   }
 
   playerHealthText.setText(`health: ${playerHealth}`);

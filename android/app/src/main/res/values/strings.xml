@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">tiro-tiro</string>
+    <string name="title_activity_main">tiro-tiro</string>
+    <string name="package_name">com.ronna.tirotiro</string>
+    <string name="fileprovider_authority">com.ronna.tirotiro.fileprovider</string>
+    <string name="custom_url_scheme">com.ronna.tirotiro</string>
+</resources>

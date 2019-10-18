@@ -1,0 +1,7 @@
+{
+  "appId": "com.ronna.tirotiro",
+  "appName": "tiro-tiro",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist"
+}
