@@ -215,7 +215,7 @@ function create() {
  */
 function update(time, delta) {
   // spawning enemies
-  if (playerHealth > 0 && time > nextEnemy && pusils < 25) {
+  if (playerHealth > 0 && time > nextEnemy && pusils < 10) {
     const enemy = enemies.get();
 
     if (enemy) {
