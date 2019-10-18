@@ -9,6 +9,7 @@ import kontraSprite from "./assets/kontra.png";
 import bulletImage from "./assets/bullet.png";
 import turretImage from "./assets/cute-turret.png";
 import gameOverPng from "./assets/gameover.png";
+import winnerImage from'./assets/winner.png'
 import tiroImage from "./assets/tiro.png";
 import fontImage from "./assets/font.png";
 import fontFnt from "./assets/font.fnt";
@@ -50,7 +51,6 @@ let playerHealth = 100;
 let enemySpan = 3000;
 let pusils = 4;
 let playerHealthText;
-let gameOverImage;
 let pusilText;
 let nextEnemy;
 let enemies;
@@ -73,6 +73,7 @@ function increasePusils() {
  */
 function preload() {
   this.load.bitmapFont("Press Start 2P", fontImage, fontFnt);
+  this.load.image('winner', winnerImage)
   this.load.image("tiro-logo", tiroImage);
   this.load.image("gameover", gameOverPng);
   this.load.image("bullet", bulletImage);
@@ -214,7 +215,7 @@ function create() {
  */
 function update(time, delta) {
   // spawning enemies
-  if (playerHealth > 0 && time > nextEnemy) {
+  if (playerHealth > 0 && time > nextEnemy && pusils < 25) {
     const enemy = enemies.get();
 
     if (enemy) {
@@ -231,11 +232,14 @@ function update(time, delta) {
     }
   }
 
-  // display game over text
-  if (playerHealth <= 0) {
+  // display win or game over text
+  if (playerHealth > 0 && pusils >= 10) {
+    const winImage = this.add.image(384, 432, "winner");
+    winImage.setDepth(4);
+  } else if (playerHealth <= 0) {
     playerHealth = 0;
 
-    gameOverImage = this.add.image(384, 384, "gameover");
+    const gameOverImage = this.add.image(384, 384, "gameover");
     gameOverImage.setDepth(4);
   }
 

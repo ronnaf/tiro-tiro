@@ -1,4 +1,11 @@
-function placeTurret(pointer, turrets, map, playerHealth, decreasePusils, pusils) {
+function placeTurret(
+  pointer,
+  turrets,
+  map,
+  playerHealth,
+  decreasePusils,
+  pusils
+) {
   const i = Math.floor(pointer.y / 96);
   const j = Math.floor(pointer.x / 96);
 
@@ -10,13 +17,15 @@ function placeTurret(pointer, turrets, map, playerHealth, decreasePusils, pusils
       turret.setVisible(true);
       turret.place(i, j);
 
-      decreasePusils()
+      decreasePusils();
     }
   }
 }
 
 function canPlaceTurret(pusils, playerHealth, map, i, j) {
-  return map[i][j] === 0 && playerHealth > 0 && Math.floor(pusils) > 0;
+  return (
+    map[i][j] === 0 && playerHealth > 0 && Math.floor(pusils) > 0 && pusils < 10
+  );
 }
 
 export { placeTurret, canPlaceTurret };
