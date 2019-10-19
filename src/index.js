@@ -9,7 +9,7 @@ import kontraSprite from "./assets/kontra.png";
 import bulletImage from "./assets/bullet.png";
 import turretImage from "./assets/cute-turret.png";
 import gameOverPng from "./assets/gameover.png";
-import winnerImage from'./assets/winner.png'
+import winnerImage from "./assets/winner.png";
 import tiroImage from "./assets/tiro.png";
 import fontImage from "./assets/font.png";
 import fontFnt from "./assets/font.fnt";
@@ -73,7 +73,7 @@ function increasePusils() {
  */
 function preload() {
   this.load.bitmapFont("Press Start 2P", fontImage, fontFnt);
-  this.load.image('winner', winnerImage)
+  this.load.image("winner", winnerImage);
   this.load.image("tiro-logo", tiroImage);
   this.load.image("gameover", gameOverPng);
   this.load.image("bullet", bulletImage);
@@ -195,9 +195,7 @@ function create() {
     damageEnemy(enemy, bullet);
   });
 
-  // this.add.text(16, 16, "TIRO-TIRO", {
-  //   fontSize: 32
-  // });
+  this.add.text(16, 92, "Earn 10 pusils\nto win");
   this.add.image(16, 16, "tiro-logo", { height: 200, width: 200 });
   playerHealthText = this.add.text(592, 698, `health: ${playerHealth}`, {
     fontSize: 24
